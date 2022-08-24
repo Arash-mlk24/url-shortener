@@ -1,13 +1,7 @@
-using UrlShortener.Base;
-
 namespace UrlShortener.Entities;
 
-public class UrlEntity : BaseEntity
+public class UrlEntity
 {
-
-  public UrlEntity() : base()
-  {
-
-  }
-
+  public string ID { get; set; }
+  public string FullPath { get; set; }
 }

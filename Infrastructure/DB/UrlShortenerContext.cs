@@ -1,4 +1,4 @@
-namespace UrlShortenerApi.DB;
+namespace UrlShortener.Infrastructure.DB;
 
 using UrlShortener.Entities;
 using Microsoft.EntityFrameworkCore;

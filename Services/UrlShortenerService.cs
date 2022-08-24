@@ -1,18 +1,20 @@
 namespace UrlShortener.Services;
 
 using UrlShortener.Interfaces;
+using UrlShortener.Infrastructure.DB;
+using UrlShortener.Entities;
 
 public class UrlShortenerService : IUrlShortenerService
 {
-
-  public UrlShortenerService()
+  private UrlShortenerContext urlShortenerContext;
+  public UrlShortenerService(UrlShortenerContext urlShortenerContext)
   {
-
+    this.urlShortenerContext = urlShortenerContext;
   }
-
   public string getShortenedUrl(string FullPath)
   {
-    return $"{FullPath} => goo.gle";
+    // var query = urlShortenerContext.UrlItems  
+    //   .Where(url => url.);
+    return "string";
   }
-
 }
