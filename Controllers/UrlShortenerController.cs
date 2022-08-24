@@ -23,7 +23,7 @@ public class UrlShortenerController : ControllerBase
   {
     try
     {
-      string serviceResult = _service.getUrl(body.FullUrlPath);
+      string serviceResult = _service.getShortenedUrl(body.FullUrlPath);
       return ServiceResult<string>.SetResult(serviceResult);
     }
     catch (Exception error)

@@ -5,9 +5,12 @@ using UrlShortener.Interfaces;
 public class UrlShortenerService : IUrlShortenerService
 {
 
-  public UrlShortenerService() { }
+  public UrlShortenerService()
+  {
 
-  public string getUrl(string FullPath)
+  }
+
+  public string getShortenedUrl(string FullPath)
   {
     return $"{FullPath} => goo.gle";
   }
