@@ -12,7 +12,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 // Add Dependencies
-builder.Services.AddScoped<IUrlShortenerService, UrlShortenerService>();
+builder.Services.AddScoped<IUrlRepository, UrlRepository>();
 
 builder.Services.AddDbContext<UrlShortenerContext>();
 
