@@ -2,7 +2,6 @@ namespace UrlShortener.Services;
 
 using UrlShortener.Interfaces;
 using UrlShortener.Infrastructure.DB;
-using UrlShortener.Entities;
 
 public class UrlShortenerService : IUrlShortenerService
 {
