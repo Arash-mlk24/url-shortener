@@ -10,7 +10,7 @@ public class UrlRepository : IUrlRepository
   {
     this.urlShortenerContext = urlShortenerContext;
   }
-  public string getShortenedUrl(string fullPath)
+  public string GetByFullPath(string fullPath)
   {
 
     var query = urlShortenerContext.UrlItems
