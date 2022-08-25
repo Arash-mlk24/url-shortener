@@ -1,3 +1,4 @@
+using UrlShortener.Applications;
 using UrlShortener.Infrastructure.DB;
 using UrlShortener.Interfaces;
 using UrlShortener.Services;
@@ -13,6 +14,7 @@ builder.Services.AddSwaggerGen();
 
 // Add Dependencies
 builder.Services.AddScoped<IUrlRepository, UrlRepository>();
+builder.Services.AddTransient<IUrlShortenerApplication, UrlShortenerApplication>();
 
 builder.Services.AddDbContext<UrlShortenerContext>();
 
