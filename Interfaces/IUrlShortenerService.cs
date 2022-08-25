@@ -1,6 +1,6 @@
 namespace UrlShortener.Interfaces;
 
-public interface IUrlShortenerService
+public interface IUrlRepository
 {
-  string getUrl(string FullPath);
+  string getShortenedUrl(string FullPath);
 }

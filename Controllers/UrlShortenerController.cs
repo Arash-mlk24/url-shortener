@@ -10,9 +10,9 @@ public class UrlShortenerController : ControllerBase
 {
 
   private readonly ILogger<UrlShortenerController> _logger;
-  private IUrlShortenerService _service;
+  private IUrlRepository _service;
 
-  public UrlShortenerController(ILogger<UrlShortenerController> logger, IUrlShortenerService service)
+  public UrlShortenerController(ILogger<UrlShortenerController> logger, IUrlRepository service)
   {
     _logger = logger;
     _service = service;
@@ -23,7 +23,7 @@ public class UrlShortenerController : ControllerBase
   {
     try
     {
-      string serviceResult = _service.getUrl(body.FullUrlPath);
+      string serviceResult = _service.getShortenedUrl(body.FullUrlPath);
       return ServiceResult<string>.SetResult(serviceResult);
     }
     catch (Exception error)
