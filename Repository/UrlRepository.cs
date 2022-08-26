@@ -14,11 +14,16 @@ public class UrlRepository : IUrlRepository
   public Url? GetByFullPath(string fullPath)
   {
 
-    var query = urlShortenerContext.UrlItems
-      .Where(url => url.FullPath == fullPath)
-      .FirstOrDefault();
+    Url url = new Url();
+    url.ID = new Guid().ToString();
+    url.FullPath = fullPath;
 
-    return query;
+    var query = urlShortenerContext.UrlItems
+        .Add(url);
+
+    urlShortenerContext.SaveChanges();
+
+    return url;
 
   }
 }
