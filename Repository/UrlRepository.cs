@@ -2,29 +2,48 @@ namespace UrlShortener.Services;
 
 using UrlShortener.Interfaces;
 using UrlShortener.Infrastructure.DB;
+using UrlShortener.Entities;
 
 public class UrlRepository : IUrlRepository
 {
+
   private UrlShortenerContext urlShortenerContext;
+
   public UrlRepository(UrlShortenerContext urlShortenerContext)
   {
     this.urlShortenerContext = urlShortenerContext;
   }
-  public string getShortenedUrl(string fullPath)
+
+  public Url? GetByFullPath(string fullPath)
   {
 
-    var query = urlShortenerContext.UrlItems
-      .Where(url => url.FullPath == fullPath)
-      .FirstOrDefault();
+    Url url = new Url();
 
-    if (query == null)
-    {
-      return "nulllllll";
-    }
-    else
-    {
-      return "not null!";
-    }
+    Guid g = Guid.NewGuid();
+    string GuidString = Convert.ToBase64String(g.ToByteArray());
+    GuidString = GuidString.Replace("=", "");
+    GuidString = GuidString.Replace("+", "");
+    GuidString = GuidString.Replace("/", "");
+
+    url.ID = GuidString;
+    url.FullPath = fullPath;
+
+    var query = urlShortenerContext.UrlItems
+        .Add(url);
+
+    urlShortenerContext.SaveChanges();
+
+    return url;
 
   }
+
+  public Url? GetById(string id)
+  {
+    var query = urlShortenerContext.UrlItems
+        .Find(id);
+
+    return query;
+
+  }
+
 }
