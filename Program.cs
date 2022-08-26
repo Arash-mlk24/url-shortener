@@ -16,7 +16,11 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IUrlRepository, UrlRepository>();
 builder.Services.AddTransient<IUrlShortenerApplication, UrlShortenerApplication>();
 
-builder.Services.AddDbContext<UrlShortenerContext>();
+builder.Services
+  .AddDbContext<UrlShortenerContext>()
+  .AddSqlServer<UrlShortenerContext>(
+    "Server=127.0.0.1:1433/;Database=Master;User=sa;Password=Arash12313801354"
+  );
 
 var app = builder.Build();
 

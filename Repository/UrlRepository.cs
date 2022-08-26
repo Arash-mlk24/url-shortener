@@ -2,6 +2,7 @@ namespace UrlShortener.Services;
 
 using UrlShortener.Interfaces;
 using UrlShortener.Infrastructure.DB;
+using UrlShortener.Entities;
 
 public class UrlRepository : IUrlRepository
 {
@@ -10,21 +11,14 @@ public class UrlRepository : IUrlRepository
   {
     this.urlShortenerContext = urlShortenerContext;
   }
-  public string GetByFullPath(string fullPath)
+  public UrlEntity? GetByFullPath(string fullPath)
   {
 
     var query = urlShortenerContext.UrlItems
       .Where(url => url.FullPath == fullPath)
       .FirstOrDefault();
 
-    if (query == null)
-    {
-      return "nulllllll";
-    }
-    else
-    {
-      return "not null!";
-    }
+    return query;
 
   }
 }
