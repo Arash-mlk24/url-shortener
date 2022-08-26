@@ -6,16 +6,26 @@ using UrlShortener.Entities;
 
 public class UrlRepository : IUrlRepository
 {
+
   private UrlShortenerContext urlShortenerContext;
+
   public UrlRepository(UrlShortenerContext urlShortenerContext)
   {
     this.urlShortenerContext = urlShortenerContext;
   }
+
   public Url? GetByFullPath(string fullPath)
   {
 
     Url url = new Url();
-    url.ID = new Guid().ToString();
+
+    Guid g = Guid.NewGuid();
+    string GuidString = Convert.ToBase64String(g.ToByteArray());
+    GuidString = GuidString.Replace("=", "");
+    GuidString = GuidString.Replace("+", "");
+    GuidString = GuidString.Replace("/", "");
+
+    url.ID = GuidString;
     url.FullPath = fullPath;
 
     var query = urlShortenerContext.UrlItems
@@ -26,4 +36,14 @@ public class UrlRepository : IUrlRepository
     return url;
 
   }
+
+  public Url? GetById(string id)
+  {
+    var query = urlShortenerContext.UrlItems
+        .Find(id);
+
+    return query;
+
+  }
+
 }

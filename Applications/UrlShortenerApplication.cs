@@ -2,29 +2,30 @@ using UrlShortener.Entities;
 using UrlShortener.Interfaces;
 using UrlShortener.Models;
 
-namespace UrlShortener.Applications
+namespace UrlShortener.Applications;
+
+class UrlShortenerApplication : IUrlShortenerApplication
 {
-  class UrlShortenerApplication : IUrlShortenerApplication
+
+  IUrlRepository urlRepository;
+
+  public UrlShortenerApplication(IUrlRepository urlRepository)
   {
+    this.urlRepository = urlRepository;
+  }
 
-    IUrlRepository urlRepository;
-
-    public UrlShortenerApplication(IUrlRepository urlRepository)
+  public ServiceResult<string> getShortenedUrl(GetUrlBody body)
+  {
+    try
     {
-      this.urlRepository = urlRepository;
+      Url? serviceResult = urlRepository.GetByFullPath(body.FullUrlPath);
+      if (serviceResult == null) throw new Exception();
+      return ServiceResult<string>.SetResult("https://localhost:7154/" + serviceResult.ID);
     }
-
-    public ServiceResult<string> getShortenedUrl(GetUrlBody body)
+    catch (Exception exception)
     {
-      try
-      {
-        Url? serviceResult = urlRepository.GetByFullPath(body.FullUrlPath);
-        return ServiceResult<string>.SetResult(serviceResult == null ? "nullll" : serviceResult.ID);
-      }
-      catch (Exception exception)
-      {
-        return ServiceResult<string>.SetError("System Error");
-      }
+      return ServiceResult<string>.SetError("System Error");
     }
   }
+
 }

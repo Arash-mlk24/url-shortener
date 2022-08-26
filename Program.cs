@@ -15,6 +15,7 @@ builder.Services.AddSwaggerGen();
 
 // Add Dependencies 
 builder.Services.AddScoped<IUrlRepository, UrlRepository>();
+builder.Services.AddTransient<IAppApplication, AppApplication>();
 builder.Services.AddTransient<IUrlShortenerApplication, UrlShortenerApplication>();
 
 var connectionString = @"Server=localhost,1433;Database=master;User=sa;Password=Arash12313801354;";
