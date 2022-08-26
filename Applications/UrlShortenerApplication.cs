@@ -18,7 +18,7 @@ namespace UrlShortener.Applications
     {
       try
       {
-        UrlEntity? serviceResult = urlRepository.GetByFullPath(body.FullUrlPath);
+        Url? serviceResult = urlRepository.GetByFullPath(body.FullUrlPath);
         return ServiceResult<string>.SetResult(serviceResult == null ? "nullll" : serviceResult.ID);
       }
       catch (Exception exception)

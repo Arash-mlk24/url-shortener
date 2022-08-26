@@ -4,5 +4,5 @@ namespace UrlShortener.Interfaces;
 
 public interface IUrlRepository
 {
-  UrlEntity? GetByFullPath(string fullPath);
+  Url? GetByFullPath(string fullPath);
 }
