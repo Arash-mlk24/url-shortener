@@ -1,9 +1,8 @@
 using UrlShortener.Models;
 
-namespace UrlShortener.Interfaces
+namespace UrlShortener.Interfaces;
+
+public interface IUrlShortenerApplication
 {
-  public interface IUrlShortenerApplication
-  {
-    ServiceResult<string> getShortenedUrl(GetUrlBody body);
-  }
+  ServiceResult<string> getShortenedUrl(GetUrlBody body);
 }

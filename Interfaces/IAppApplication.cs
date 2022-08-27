@@ -1,9 +1,8 @@
 using UrlShortener.Models;
 
-namespace UrlShortener.Interfaces
+namespace UrlShortener.Interfaces;
+
+public interface IAppApplication
 {
-  public interface IAppApplication
-  {
-    ServiceResult<string> getFullPath(string id);
-  }
+  ServiceResult<string> getFullPath(string id);
 }
